@@ -1,0 +1,302 @@
+#include <stdio.h>
+#include <string.h>
+
+
+struct Mydata
+{
+    char UserId[20];
+    char Password[20];
+    char Name[50];
+    char Surname[50];
+};
+
+struct Mydata user;
+int accountCreated = 0;
+
+void CreateAccount(void);
+void Login(void);
+void Quiz(void);
+
+
+int main(void)
+{
+    int choice;
+
+    printf("\nWELCOME TO FUN QUIZ\n");
+    printf(" 1]Sign Up \n 2]Login\n");
+    printf("Enter your choice: ");
+    scanf("%d", &choice);
+
+    if( choice<=0 || choice>=3)
+	{	printf("plz enter vaild choice\n");
+		main();
+	}
+
+    switch (choice)
+    {
+        case 1:
+            CreateAccount();
+            Login();
+            Quiz();
+            break;
+
+        case 2:
+            if (accountCreated == 0)
+            {
+                printf("\nNo account found! Please sign up first.\n");
+                CreateAccount();
+            }
+            Login();
+            Quiz();
+            break;
+
+
+        default:
+            printf("Invalid choice!\n");
+    }
+
+    return 0;
+}
+
+void CreateAccount(void)
+{
+    printf("\n--- SIGN UP ---\n");
+
+    printf("Enter First Name: ");
+    scanf("%20s", user.Name);
+
+    printf("Enter Last Name: ");
+    scanf("%20s", user.Surname);
+
+    printf("Create User ID: ");
+    scanf("%20s", user.UserId);
+
+    printf("Create Password: ");
+    scanf("%20s", user.Password);
+
+    accountCreated = 1;
+
+    printf("\n your Account has been Created Successfully!\n");
+}
+
+
+void Login(void)
+{
+    char uid[20], pass[20];
+
+    printf("\n--- LOGIN ---\n");
+
+    while (1)
+    {
+        printf("%20s","Enter User ID: ");
+        scanf("%20s", &uid);
+
+        printf("%20s","Enter Password: ");
+        scanf("%20s", &pass);
+
+        if (strcmp(uid, user.UserId) == 0 &&
+            strcmp(pass, user.Password) == 0)
+        {
+            printf("\nLogin Successful! Welcome %s \n", user.Name);
+            break;
+        }
+        else
+        {
+            printf("Invalid ID or Password. Try again.\n");
+        }
+    }
+}
+
+
+void Quiz(void)
+{
+    short ans1,ans2,ans3,ans4,ans5,ans6,ans7,ans8;
+    int score = 0;
+
+    printf("\n\t\t==== CACHE ME IF YOU CAN ====\n\n");
+    printf("Finish up your riddles\n\n");
+
+    printf("riddle_1  I get shorter as I get older, yet I never move.\n");
+    printf("1:program  2:Memory  3:Variable name  4:Stack\n");
+    scanf("%hd",&ans1);
+
+    switch(ans1)
+    {
+        case 2:
+            printf("Right answer\n");
+            score += 10;
+            break;
+        case 1:
+        case 3:
+        case 4:
+            printf("Wrong answer\n");
+            break;
+        default:
+            printf("Invalid option\n");
+    }
+
+    printf("\nriddle_2  I always tell the truth, but I am not always correct.\n");
+    printf("1:Compiler  2:Algorithm  3:Programmer  4:Debugger\n");
+    scanf("%hd",&ans2);
+
+    switch(ans2)
+    {
+        case 4:
+            printf("Right answer\n");
+            score += 10;
+            break;
+        case 1:
+        case 2:
+        case 3:
+            printf("Wrong answer\n");
+            break;
+        default:
+            printf("Invalid option\n");
+    }
+
+    printf("\nriddle_3  I can be full, empty, or overflow.\n");
+    printf("1:Stack  2:Queue  3:Buffer  4:Register\n");
+    scanf("%hd",&ans3);
+
+    switch(ans3)
+    {
+        case 3:
+            printf("Right answer\n");
+            score += 10;
+            break;
+        case 1:
+        case 2:
+        case 4:
+            printf("Wrong answer\n");
+            break;
+        default:
+            printf("Invalid option\n");
+    }
+
+    printf("\nriddle_4  The more you optimize me, the slower I sometimes become.\n");
+    printf("1:Code  2:Cache  3:Network  4:Database\n");
+    scanf("%hd",&ans4);
+
+    switch(ans4)
+    {
+        case 1:
+            printf("Right answer\n");
+            score += 10;
+            break;
+        case 2:
+        case 3:
+        case 4:
+            printf("Wrong answer\n");
+            break;
+        default:
+            printf("Invalid option\n");
+    }
+
+    printf("\nriddle_5  I start with nothing, end with everything.\n");
+    printf("1:Binary Search  2:If-Else  3:OS  4:Compiler\n");
+    scanf("%hd",&ans5);
+
+    switch(ans5)
+    {
+        case 2:
+            printf("Right answer\n");
+            score += 10;
+            break;
+        case 1:
+        case 3:
+        case 4:
+            printf("Wrong answer\n");
+            break;
+        default:
+            printf("Invalid option\n");
+    }
+
+    printf("\nriddle_6  I exist everywhere, yet I do nothing.\n");
+    printf("1:Comment  2:Loop  3:Function  4:Class\n");
+    scanf("%hd",&ans6);
+
+    switch(ans6)
+    {
+        case 1:
+            printf("Right answer\n");
+            score += 10;
+            break;
+        case 2:
+        case 3:
+        case 4:
+            printf("Wrong answer\n");
+            break;
+        default:
+            printf("Invalid option\n");
+    }
+
+    printf("\nriddle_7  I can run forever if you forget me once.\n");
+    printf("1:Recursion  2:Infinite loop  3:Deadlock  4:Thread\n");
+    scanf("%hd",&ans7);
+
+    switch(ans7)
+    {
+        case 2:
+            printf("Right answer\n");
+            score += 10;
+            break;
+        case 1:
+        case 3:
+        case 4:
+            printf("Wrong answer\n");
+            break;
+        default:
+            printf("Invalid option\n");
+    }
+
+    printf("\nriddle_8  I make programs faster without changing output.\n");
+    printf("1:Refactoring  2:Optimization  3:Multithreading  4:Caching\n");
+    scanf("%hd",&ans8);
+
+    switch(ans8)
+    {
+        case 2:
+            printf("Right answer\n");
+            score += 10;
+            break;
+        case 1:
+        case 3:
+        case 4:
+            printf("Wrong answer\n");
+            break;
+        default:
+            printf("Invalid option\n");
+    }
+
+    printf("\n\nQUIZ OVER\n");
+    printf("Your Score: %d / 80\n", score);
+
+   if (score==80){
+        printf("YOU MADE IT ALL CORRECT");
+    }
+    else if (score<=70 && score>50){
+        printf("GOOD JOB");
+    }
+    else if (score<=50 && score>30){
+        printf("Needs Improvement");
+    }
+    else {
+        printf("Try Again");
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
